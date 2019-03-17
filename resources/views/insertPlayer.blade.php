@@ -69,7 +69,7 @@
                 <br>
                 <div class="bg-primary text-black col-md-12 text-center"><h2><strong>CADASTRO DE JOGADOR</strong></h2></div>
                 <br>
-                <form action="/setPlayer" method="post">
+                <form  method="POST" action="{{route('setplayer')}}">
                     <div class="form-row">
                         <input class="form-control" name="_token" type="hidden" value="{{ csrf_token() }}">
 
@@ -113,7 +113,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <label for="a001_zip">CEP:</label><br>
-                            <input class="form-control" type="number" name="a001_zip"  id="zip" placeholder="Digite o CEP"><br>
+                            <input class="form-control" type="text" name="a001_zip"  id="zip" placeholder="Digite o CEP"><br>
                         </div>
                     </div>
 
@@ -159,11 +159,12 @@
 </html>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
 <script>
 $('#zip').live('keyup', function (e) {
 
     $.ajax({
-        url: '/getcep/' + $(this).val(),
+        url: '/getcepplayer/' + $(this).val(),
         dataType: "json"
     }).done(function (response) {
         console.log(response);

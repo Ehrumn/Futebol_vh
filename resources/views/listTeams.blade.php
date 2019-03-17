@@ -66,7 +66,12 @@
     </head>
     <body>
         <div class="col-md-12 text-right">
-            <a class="btn btn-primary btn-sm" href="/exportteams">Exportar CSV</a>
+            <div class="col-md-6 text-left">
+                <a class="btn btn-success btn-sm" href="/insertteam">Novo Time</a>
+            </div>
+            <div class="col-md-6 text-right">
+                <a class="btn btn-primary btn-sm" href="/exportteams">Exportar CSV</a>
+            </div>
         </div>
         <div class="col-md-12">
             <form action="/setTeam" method="post">

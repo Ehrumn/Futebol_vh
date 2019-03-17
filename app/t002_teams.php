@@ -14,6 +14,7 @@ class t002_teams extends Model
         'a002_name',
         'a002_address',
         'a002_number',
+        'a002_neighbor',
         'a002_zip',
         'a002_city',
         'a002_state',
@@ -45,7 +46,7 @@ class t002_teams extends Model
     }
 
     public function getAllTeams() {
-        dd($this->all());
+        
         try {
             return $this->all();            
         } catch (Exception $ex) {

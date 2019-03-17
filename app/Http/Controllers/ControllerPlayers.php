@@ -59,11 +59,11 @@ class ControllerPlayers extends Controller {
         return view('editPlayer', ['lista' => $data]);
     }
 
-    public function updatePlayer(Request $request, $id) {
-        $data = $request->all();
+    public function updatePlayer(Request $request, $id) {        
         try {
+            $data = $request->all();
             $this->model->updatePlayer($data, $id);
-            echo 'alert("Cadastro alterado com sucesso! ")';
+            
             return redirect('/listplayers');
         } catch (Exception $ex) {
             echo 'erro';
@@ -96,7 +96,7 @@ class ControllerPlayers extends Controller {
         return redirect($filename);
     }
 
-    public function getCEP($cep) {
+    public function getCEPPlayer($cep) {
         $response = Curl::to("https://viacep.com.br/ws/$cep/json/")->get();
         print_r($response);
     }

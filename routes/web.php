@@ -16,13 +16,20 @@ Route::get('/', function () {
 });
 
 Route::get('home', 'ControllerFutebol@openHome');
-Route::get('insertplayer', 'ControllerPlayers@insertPlayer');
-Route::post('setplayer', 'ControllerPlayers@setPlayer');
-Route::get('listteams', 'ControllerTeams@listTeams');
 Route::get('listplayers', 'ControllerPlayers@listPlayers');
+Route::get('insertplayer', 'ControllerPlayers@insertPlayer');
+Route::post('setplayer', 'ControllerPlayers@setPlayer')->name('setplayer');
 Route::get('removeplayer/{id}', 'ControllerPlayers@removePlayer');
 Route::get('editplayer/{id}', 'ControllerPlayers@editPlayer');
 Route::get('exportplayers', 'ControllerPlayers@exportPlayers');
 Route::post('updateplayer/{id}', 'ControllerPlayers@updatePlayer');
-Route::get('getcep/{cep}', 'ControllerTeams@getCEP');
-Route::get('insertteam', 'ControllerTeams@InsertTeams');
+Route::get('getcepplayer/{cep}', 'ControllerPlayers@getCEPPlayer');
+
+Route::get('listteams', 'ControllerTeams@listTeams');
+Route::get('insertteam', 'ControllerTeams@InsertTeam');
+Route::post('setteam', 'ControllerTeams@setTeam')->name('setteam');
+Route::get('removeteam/{id}', 'ControllerTeams@removeTeam');
+Route::get('editteam/{id}', 'ControllerTeams@editTeam');
+Route::get('exportteams', 'ControllerTeams@exportTeams');
+Route::post('updateteam/{id}', 'ControllerTeams@updateTeam');
+Route::get('getcepteam/{cep}', 'ControllerTeams@getCEPTeam');

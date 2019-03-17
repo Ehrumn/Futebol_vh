@@ -7,21 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class t001_players extends Model {
 
     public $table = "t001_players";
-    
     public $primaryKey = 'a001_id';
-    
     public $fillable = [
-        "a001_name",
-        "a001_surname",
-        "a001_address",
-        "a001_city",
-        "a001_state",
-        "a001_country",
-        "a001_birthday",
-        "a001_gender",
-        "a001_zip",
-        "a001_neighbor",
-        "a001_email"
+        'a001_name',
+        'a001_surname',
+        'a001_address',
+        'a001_number',
+        'a001_city',
+        'a001_state',
+        'a001_country',
+        'a001_birthday',
+        'a001_gender',
+        'a001_zip',
+        'a001_neighbor',
+        'a001_email'
     ];
 
     public function storePlayer($data) {
@@ -29,9 +28,12 @@ class t001_players extends Model {
     }
 
     public function updatePlayer($data, $id) {
-        $player = $this->find($id);
-        $player->update($data);
-        
+        try {
+            $player = $this->find($id);
+            $player->update($data);
+        } catch (Exception $ex) {
+            echo 'erro';
+        }
         return $player;
     }
 
@@ -44,7 +46,7 @@ class t001_players extends Model {
             } catch (Exception $ex) {
                 echo 'error';
             }
-        }else{
+        } else {
             echo 'usuario não existe';
         }
     }
@@ -55,6 +57,6 @@ class t001_players extends Model {
 
     public function getPlayer($id) {
         return $this->find($id);
-    }    
+    }
 
 }

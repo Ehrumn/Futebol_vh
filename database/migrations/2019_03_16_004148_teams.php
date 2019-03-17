@@ -19,6 +19,7 @@ class Teams extends Migration
             $table->string('a002_name');
             $table->string('a002_zip');            
             $table->string('a002_number');
+            $table->string('a002_neighbor');
             $table->string('a002_address');
             $table->string('a002_city');
             $table->string('a002_state');

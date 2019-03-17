@@ -18,25 +18,45 @@ class ControllerTeams extends Controller {
         return view('teams');
     }
 
-    public function getCEP($cep) {
+    public function setTeam(Request $request) {
+        try {
+            $this->model->storeTeam($request->all());
+            //return $this->openHome('Cadastro realizado com sucesso !');
+            echo  "<script>alert('Time cadastrado com sucesso !);</script>";
+            return redirect('/listteams');
+        } catch (Exception $ex) {
+            return "erro";
+        }
+    }
+
+    public function getCEPTeam($cep) {
         $response = Curl::to("https://viacep.com.br/ws/$cep/json/")->get();
         print_r($response);
     }
 
-    public function insertTeams() {
-        return view('insertTeams');
+    public function insertTeam() {
+        return view('insertTeam');
     }
 
     public function listTeams() {
-        $data = $this->model->getA;
+        $data = $this->model->getAllTeams();
         if (!$data) {
             $data = [];
         }
         return $this->viewTeams($data);
     }
 
+    public function editTeam($id) {
+        $data = $this->model->getTeam($id);
+        return $this->viewTeam($data);
+    }
+
     public function viewTeams($data = []) {
         return view('listTeams', ["lista" => $data]);
+    }
+
+    public function viewTeam($data) {
+        return view('editTeam', ['lista' => $data]);
     }
 
     public function exportTeams() {
@@ -69,6 +89,26 @@ class ControllerTeams extends Controller {
         fclose($fp);
 
         return redirect($filename);
+    }
+
+    public function updateTeam(Request $request, $id) {        
+        try {
+            $data = $request->all();
+            $this->model->updateTeam($data, $id);
+            
+            return redirect('/listteams');
+        } catch (Exception $ex) {
+            echo 'erro';
+        }
+    }
+
+    public function removeTeam($id) {
+        try {
+            $this->model->deleteTeam($id);
+            return redirect('/listteams');
+        } catch (Exception $ex) {
+            return 'erro';
+        }
     }
 
 }
