@@ -69,7 +69,7 @@
                 <br>
                 <div class="bg-primary text-black col-md-12 text-center"><h2><strong>CADASTRO DE JOGADOR</strong></h2></div>
                 <br>
-                <form  method="POST" action="{{route('setplayer')}}">
+                <form  method="POST" action="/setplayer">
                     <div class="form-row">
                         <input class="form-control" name="_token" type="hidden" value="{{ csrf_token() }}">
 
@@ -120,7 +120,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-9">
                             <label for="a001_address">Logradouro:</label><br>
-                            <input class="form-control" type="text" name="a001_address" id="address" placeholder="Digite endereço" disabled><br>
+                            <input class="form-control" type="text" name="a001_address" id="address" placeholder="Digite endereço"><br>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="a001_number">Número:</label><br>
@@ -130,21 +130,21 @@
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label for="a001_city">Cidade:</label><br>
-                            <input class="form-control" type="text" name="a001_city" id="city" placeholder="Digite a cidade" disabled><br>
+                            <input class="form-control" type="text" name="a001_city" id="city" placeholder="Digite a cidade"><br>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="a001_neighbor">Bairro:</label><br>
-                            <input class="form-control" type="text" name="a001_neighbor" id="neighbor" placeholder="Digite o bairro" disabled><br>
+                            <input class="form-control" type="text" name="a001_neighbor" id="neighbor" placeholder="Digite o bairro"><br>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="a001_state">Estado:</label><br>
-                            <input class="form-control" type="text" name="a001_state" id="state" placeholder="Digite o estado" disabled><br>
+                            <input class="form-control" type="text" name="a001_state" id="state" placeholder="Digite o estado"><br>
                         </div>
                         <div class="form-group col-md-5">
                             <label for="a001_country">País:</label><br>
-                            <input class="form-control" type="text" name="a001_country" id="country" placeholder="Digite o país" disabled><br>
+                            <input class="form-control" type="text" name="a001_country" id="country" placeholder="Digite o país"><br>
                         </div>
                     </div>
                     <div class="form-group text-right">

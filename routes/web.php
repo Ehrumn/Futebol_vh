@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::get('home', 'ControllerFutebol@openHome');
 Route::get('listplayers', 'ControllerPlayers@listPlayers');
 Route::get('insertplayer', 'ControllerPlayers@insertPlayer');
-Route::post('setplayer', 'ControllerPlayers@setPlayer')->name('setplayer');
+Route::post('setplayer', 'ControllerPlayers@setPlayer');
 Route::get('removeplayer/{id}', 'ControllerPlayers@removePlayer');
 Route::get('editplayer/{id}', 'ControllerPlayers@editPlayer');
 Route::get('exportplayers', 'ControllerPlayers@exportPlayers');
@@ -27,7 +27,7 @@ Route::get('getcepplayer/{cep}', 'ControllerPlayers@getCEPPlayer');
 
 Route::get('listteams', 'ControllerTeams@listTeams');
 Route::get('insertteam', 'ControllerTeams@InsertTeam');
-Route::post('setteam', 'ControllerTeams@setTeam')->name('setteam');
+Route::post('setteam', 'ControllerTeams@setTeam');
 Route::get('removeteam/{id}', 'ControllerTeams@removeTeam');
 Route::get('editteam/{id}', 'ControllerTeams@editTeam');
 Route::get('exportteams', 'ControllerTeams@exportTeams');

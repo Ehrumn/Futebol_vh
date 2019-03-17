@@ -70,7 +70,7 @@
                 <br>
                 <div class="bg-primary text-black col-md-12 text-center"><h2><strong>Cadastro de Time</strong></h2></div>
                 <br>
-                <form  method="POST" action="{{route('setteam')}}">
+                <form  method="POST" action="/setteam">
                     <div class="form-row">
                         <div class="form-group col-md-9">
                             <input class="form-control" name="_token" type="hidden" value="{{ csrf_token() }}">
@@ -113,7 +113,7 @@
                         </div>
                     </div>
                     <div class="form-group text-right">
-                        <a href="#" id="cancelar" class="btn btn-md btn-danger">Cancelar</a>
+                        <a href="/listteams" id="cancelar" class="btn btn-md btn-danger">Cancelar</a>
                         <button type="submit" class="btn btn-success">Salvar</button>
                     </div>
                 </form>
@@ -128,20 +128,21 @@
 $('#zip').live('keyup', function (e) {
 
     $.ajax({
-    url: '/getcepteam/' + $(this).val(),
+        url: '/getcepteam/' + $(this).val(),
         dataType: "json"
-            }).done(function (response) {         console.log(response);
-            $('#address').val(response.logradouro);
-            $('#neighbor').val(response.bairro);
-            $('#city').val(response.localidade);
-            $('#state').val(response.uf);
-            $('#country').val('Brasil');
+    }).done(function (response) {
+        console.log(response);
+        $('#address').val(response.logradouro);
+        $('#neighbor').val(response.bairro);
+        $('#city').val(response.localidade);
+        $('#state').val(response.uf);
+        $('#country').val('Brasil');
     });
 });
 
-            $('#cancelar').click(function () {
+$('#cancelar').click(function () {
     $('input').val('');
-        });
-    //$('#salvar').on('submit');
+});
+//$('#salvar').on('submit');
 </script>
 
