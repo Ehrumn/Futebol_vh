@@ -1,99 +1,69 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('openHome')
+@section('conteudo')
+<div class="content">
 
-        <title>Laravel</title>
+    <div class="col-md-12 row" style="top:20px;">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <div class="col-md-12 text-right" style="bottom: 10px">
+            <a class="btn btn-primary btn-sm" href="/exportteamplayers">Exportar CSV</a>
+        </div>
+        <div class="col-md-4">
+            <div style="max-height: 300px; overflow: auto">
+                <div class="bg-primary"><h3>Times</h3></div>
+                <ul class="list-group">
+                    @foreach($teams as $team)
+                    <li class="list-group-item list-group-item-action" id='{{ $team['a002_id'] }}' onclick="carregaPlayer({{ $team['a002_id'] }})"> {{ $team['a002_name'] }}</li>
+                    @endforeach
+                </ul>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
             </div>
         </div>
-    </body>
-</html>
+
+        <div class="col-md-8" id="div_players" >
+            <div class="bg-primary col-md-12"><h3>Jogadores</h3></div>
+            <form action="/setPlayer" method="post">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Cidade</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Posição</th>
+                            <th scope="col">Salário</th>
+                        </tr>
+                    </thead>
+                    <tbody id="Layer_Players">
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+            function carregaPlayer(id){
+            $.ajax({
+            url: "/getteamplayers/" + id,
+                    dataType: "json"
+            }).done(function (response){
+            console.log(response);
+                    let html = '';
+                    response.forEach(function (item){
+                    html += '<tr>';
+                            html += "<td>" + item.a001_name + " " + item.a001_surname + "</td>";
+                            html += "<td>" + item.a001_email + "</td>";
+                            html += "<td>" + item.a001_city + "</td>";
+                            html += "<td>" + item.a001_state + "</td>";
+                            html += "<td>" + item.a003_position + "</td>";
+                            html += "<td>" + item.a003_salary + "</td>";
+                            html += '</tr>';
+                    });
+                    $('ul').find('li').removeClass('active');
+                    $('#' + id).addClass('active');
+                    $('#Layer_Players').html(html);
+                    $('#div_players').removeAttr('hidden');
+            });
+            }
+
+</script>
+@stop
