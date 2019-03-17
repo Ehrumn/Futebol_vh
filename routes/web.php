@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('home', 'ControllerFutebol@openHome');
+Route::get('insertplayer', 'ControllerPlayers@insertPlayer');
+Route::post('setplayer', 'ControllerPlayers@setPlayer');
+Route::get('listteams', 'ControllerTeams@listTeams');
+Route::get('listplayers', 'ControllerPlayers@listPlayers');
+Route::get('removeplayer/{id}', 'ControllerPlayers@removePlayer');
+Route::get('editplayer/{id}', 'ControllerPlayers@editPlayer');
+Route::get('exportplayers', 'ControllerPlayers@exportPlayers');
+Route::post('updateplayer/{id}', 'ControllerPlayers@updatePlayer');
+Route::get('getcep/{cep}', 'ControllerTeams@getCEP');
+Route::get('insertteam', 'ControllerTeams@InsertTeams');
